@@ -1,0 +1,39 @@
+[all]
+master01  ansible_host=10.0.4.18    ip=10.0.4.18
+master02  ansible_host=10.0.4.19    ip=10.0.4.19
+master03  ansible_host=10.0.4.20    ip=10.0.4.20
+worker01  ansible_host=10.0.4.21    ip=10.0.4.21
+worker02  ansible_host=10.0.4.22    ip=10.0.4.22
+worker03  ansible_host=10.0.4.23    ip=10.0.4.23
+worker04  ansible_host=10.0.4.24    ip=10.0.4.24
+
+[kube-master]
+master01
+master02
+master03
+
+[kube-node]
+worker01
+worker02
+worker03
+worker04
+
+[etcd]
+master01
+master02
+master03
+
+[k8s_cluster:children]
+kube-node
+kube-master
+
+[calico-rr]
+
+[vault]
+master01
+master02
+master03
+worker01
+worker02
+worker03
+worker04
