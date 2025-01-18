@@ -1,27 +1,49 @@
 [all]
-master01  ansible_host=10.0.4.18    ip=10.0.4.18
-master02  ansible_host=10.0.4.19    ip=10.0.4.19
-master03  ansible_host=10.0.4.20    ip=10.0.4.20
-worker01  ansible_host=10.0.4.21    ip=10.0.4.21
-worker02  ansible_host=10.0.4.22    ip=10.0.4.22
-worker03  ansible_host=10.0.4.23    ip=10.0.4.23
-worker04  ansible_host=10.0.4.24    ip=10.0.4.24
+prod_k8s_master01	  ansible_host=10.10.20.104    ip=10.10.20.104
+prod_k8s_master02	  ansible_host=10.10.20.105    ip=10.10.20.105
+prod_k8s_master03	  ansible_host=10.10.20.106    ip=10.10.20.106
+prod_k8s_ingress01	ansible_host=10.10.20.107    ip=10.10.20.107
+prod_k8s_ingress02	ansible_host=10.10.20.108    ip=10.10.20.108
+prod_k8s_ingress03	ansible_host=10.10.20.109    ip=10.10.20.109
+prod_k8s_worker01	  ansible_host=10.10.20.111    ip=10.10.20.111
+prod_k8s_worker02	  ansible_host=10.10.20.112    ip=10.10.20.112
+prod_k8s_worker03	  ansible_host=10.10.20.113    ip=10.10.20.113
+prod_k8s_worker04	  ansible_host=10.10.20.114    ip=10.10.20.114
+prod_k8s_worker05	  ansible_host=10.10.20.115    ip=10.10.20.115
+prod_k8s_worker06	  ansible_host=10.10.20.116    ip=10.10.20.116
+prod_k8s_worker07	  ansible_host=10.10.20.117    ip=10.10.20.117
+prod_k8s_worker08	  ansible_host=10.10.20.118    ip=10.10.20.118
+prod_k8s_worker09	  ansible_host=10.10.20.119    ip=10.10.20.119
+prod_k8s_worker10	  ansible_host=10.10.20.120    ip=10.10.20.120
+prod_k8s_worker11	  ansible_host=10.10.20.121    ip=10.10.20.121
+prod_k8s_worker12	  ansible_host=10.10.20.122    ip=10.10.20.122
 
 [kube-master]
-master01
-master02
-master03
+prod_k8s_master01
+prod_k8s_master02
+prod_k8s_master03
 
 [kube-node]
-worker01
-worker02
-worker03
-worker04
+prod_k8s_ingress01
+prod_k8s_ingress02
+prod_k8s_ingress03
+prod_k8s_worker01
+prod_k8s_worker02
+prod_k8s_worker03
+prod_k8s_worker04
+prod_k8s_worker05
+prod_k8s_worker06
+prod_k8s_worker07
+prod_k8s_worker08
+prod_k8s_worker09
+prod_k8s_worker10
+prod_k8s_worker11
+prod_k8s_worker12
 
 [etcd]
-master01
-master02
-master03
+prod_k8s_master01
+prod_k8s_master02
+prod_k8s_master03
 
 [k8s_cluster:children]
 kube-node
@@ -30,10 +52,21 @@ kube-master
 [calico-rr]
 
 [vault]
-master01
-master02
-master03
-worker01
-worker02
-worker03
-worker04
+prod_k8s_master01
+prod_k8s_master02
+prod_k8s_master03
+prod_k8s_ingress01
+prod_k8s_ingress02
+prod_k8s_ingress03
+prod_k8s_worker01
+prod_k8s_worker02
+prod_k8s_worker03
+prod_k8s_worker04
+prod_k8s_worker05
+prod_k8s_worker06
+prod_k8s_worker07
+prod_k8s_worker08
+prod_k8s_worker09
+prod_k8s_worker10
+prod_k8s_worker11
+prod_k8s_worker12

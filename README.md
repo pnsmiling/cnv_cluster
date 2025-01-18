@@ -2,24 +2,49 @@
 
 ### Copy ssh-key to nodes
 ```
-ssh-copy-id root@master01 &&
-ssh-copy-id root@master02 &&
-ssh-copy-id root@master03 &&
-ssh-copy-id root@worker01 &&
-ssh-copy-id root@worker02 &&
-ssh-copy-id root@worker03
+ssh-copy-id it@prod_k8s_master01 &&
+ssh-copy-id it@prod_k8s_master02 &&
+ssh-copy-id it@prod_k8s_master03 &&
+ssh-copy-id it@prod_k8s_ingress01 &&
+ssh-copy-id it@prod_k8s_ingress02 &&
+ssh-copy-id it@prod_k8s_ingress03 &&
+ssh-copy-id it@prod_k8s_worker01 &&
+ssh-copy-id it@prod_k8s_worker02 &&
+ssh-copy-id it@prod_k8s_worker03 &&
+ssh-copy-id it@prod_k8s_worker04 &&
+ssh-copy-id it@prod_k8s_worker05 &&
+ssh-copy-id it@prod_k8s_worker06 &&
+ssh-copy-id it@prod_k8s_worker07 &&
+ssh-copy-id it@prod_k8s_worker08 &&
+ssh-copy-id it@prod_k8s_worker09 &&
+ssh-copy-id it@prod_k8s_worker10 &&
+ssh-copy-id it@prod_k8s_worker11 &&
+ssh-copy-id it@prod_k8s_worker12
 ```
 
 ### Add host on main VM
 ```
 cat <<EOF >> /etc/hosts
-10.0.4.18 master01
-10.0.4.19 master02
-10.0.4.20 master03
-10.0.4.21 worker01
-10.0.4.22 worker02
-10.0.4.23 worker03
-10.0.4.24 worker04
+10.10.20.104 prod_k8s_master01
+10.10.20.105 prod_k8s_master02
+10.10.20.106 prod_k8s_master03
+
+10.10.20.107 prod_k8s_ingress01
+10.10.20.108 prod_k8s_ingress02
+10.10.20.109 prod_k8s_ingress03
+
+10.10.20.111 prod_k8s_worker01
+10.10.20.112 prod_k8s_worker02
+10.10.20.113 prod_k8s_worker03
+10.10.20.114 prod_k8s_worker04
+10.10.20.115 prod_k8s_worker05
+10.10.20.116 prod_k8s_worker06
+10.10.20.117 prod_k8s_worker07
+10.10.20.118 prod_k8s_worker08
+10.10.20.119 prod_k8s_worker09
+10.10.20.120 prod_k8s_worker10
+10.10.20.121 prod_k8s_worker11
+10.10.20.122 prod_k8s_worker12
 EOF
 ```
 
@@ -29,14 +54,27 @@ EOF
 declare -a hosts=("worker01" "worker02" "worker03")
 for i in "${hosts[@]}"
 do
-   ssh root@$i 'cat <<EOF >> /etc/hosts
-10.0.4.18 master01
-10.0.4.19 master02
-10.0.4.20 master03
-10.0.4.21 worker01
-10.0.4.22 worker02
-10.0.4.23 worker03
-10.0.4.24 worker04
+   ssh it@$i 'cat <<EOF >> /etc/hosts
+10.10.20.104 prod_k8s_master01
+10.10.20.105 prod_k8s_master02
+10.10.20.106 prod_k8s_master03
+
+10.10.20.107 prod_k8s_ingress01
+10.10.20.108 prod_k8s_ingress02
+10.10.20.109 prod_k8s_ingress03
+
+10.10.20.111 prod_k8s_worker01
+10.10.20.112 prod_k8s_worker02
+10.10.20.113 prod_k8s_worker03
+10.10.20.114 prod_k8s_worker04
+10.10.20.115 prod_k8s_worker05
+10.10.20.116 prod_k8s_worker06
+10.10.20.117 prod_k8s_worker07
+10.10.20.118 prod_k8s_worker08
+10.10.20.119 prod_k8s_worker09
+10.10.20.120 prod_k8s_worker10
+10.10.20.121 prod_k8s_worker11
+10.10.20.122 prod_k8s_worker12
 EOF'
 done
 ```
