@@ -2,49 +2,52 @@
 
 ### Copy ssh-key to nodes
 ```
-ssh-copy-id it@prod_k8s_master01 &&
-ssh-copy-id it@prod_k8s_master02 &&
-ssh-copy-id it@prod_k8s_master03 &&
-ssh-copy-id it@prod_k8s_ingress01 &&
-ssh-copy-id it@prod_k8s_ingress02 &&
-ssh-copy-id it@prod_k8s_ingress03 &&
-ssh-copy-id it@prod_k8s_worker01 &&
-ssh-copy-id it@prod_k8s_worker02 &&
-ssh-copy-id it@prod_k8s_worker03 &&
-ssh-copy-id it@prod_k8s_worker04 &&
-ssh-copy-id it@prod_k8s_worker05 &&
-ssh-copy-id it@prod_k8s_worker06 &&
-ssh-copy-id it@prod_k8s_worker07 &&
-ssh-copy-id it@prod_k8s_worker08 &&
-ssh-copy-id it@prod_k8s_worker09 &&
-ssh-copy-id it@prod_k8s_worker10 &&
-ssh-copy-id it@prod_k8s_worker11 &&
-ssh-copy-id it@prod_k8s_worker12
+ssh-copy-id it@prod-k8s-master01 &&
+ssh-copy-id it@prod-k8s-master02 &&
+ssh-copy-id it@prod-k8s-master03 &&
+ssh-copy-id it@prod-k8s-ingress01 &&
+ssh-copy-id it@prod-k8s-ingress02 &&
+ssh-copy-id it@prod-k8s-ingress03 &&
+ssh-copy-id it@prod-k8s-worker01 &&
+ssh-copy-id it@prod-k8s-worker02 &&
+ssh-copy-id it@prod-k8s-worker03 &&
+ssh-copy-id it@prod-k8s-worker04 &&
+ssh-copy-id it@prod-k8s-worker05 &&
+ssh-copy-id it@prod-k8s-worker06 &&
+ssh-copy-id it@prod-k8s-worker07 &&
+ssh-copy-id it@prod-k8s-worker08 &&
+ssh-copy-id it@prod-k8s-worker09 &&
+ssh-copy-id it@prod-k8s-worker10 &&
+ssh-copy-id it@prod-k8s-worker11 &&
+ssh-copy-id it@prod-k8s-worker12 &&
+ssh-copy-id it@prod-k8s-worker-tool
 ```
 
 ### Add host on main VM
 ```
 cat <<EOF >> /etc/hosts
-10.10.20.104 prod_k8s_master01
-10.10.20.105 prod_k8s_master02
-10.10.20.106 prod_k8s_master03
+10.10.20.104 prod-k8s-master01
+10.10.20.105 prod-k8s-master02
+10.10.20.106 prod-k8s-master03
 
-10.10.20.107 prod_k8s_ingress01
-10.10.20.108 prod_k8s_ingress02
-10.10.20.109 prod_k8s_ingress03
+10.10.20.107 prod-k8s-ingress01
+10.10.20.108 prod-k8s-ingress02
+10.10.20.109 prod-k8s-ingress03
 
-10.10.20.111 prod_k8s_worker01
-10.10.20.112 prod_k8s_worker02
-10.10.20.113 prod_k8s_worker03
-10.10.20.114 prod_k8s_worker04
-10.10.20.115 prod_k8s_worker05
-10.10.20.116 prod_k8s_worker06
-10.10.20.117 prod_k8s_worker07
-10.10.20.118 prod_k8s_worker08
-10.10.20.119 prod_k8s_worker09
-10.10.20.120 prod_k8s_worker10
-10.10.20.121 prod_k8s_worker11
-10.10.20.122 prod_k8s_worker12
+10.10.20.110 prod-k8s-worker-tool
+
+10.10.20.111 prod-k8s-worker01
+10.10.20.112 prod-k8s-worker02
+10.10.20.113 prod-k8s-worker03
+10.10.20.114 prod-k8s-worker04
+10.10.20.115 prod-k8s-worker05
+10.10.20.116 prod-k8s-worker06
+10.10.20.117 prod-k8s-worker07
+10.10.20.118 prod-k8s-worker08
+10.10.20.119 prod-k8s-worker09
+10.10.20.120 prod-k8s-worker10
+10.10.20.121 prod-k8s-worker11
+10.10.20.122 prod-k8s-worker12
 EOF
 ```
 
@@ -55,26 +58,28 @@ declare -a hosts=("worker01" "worker02" "worker03")
 for i in "${hosts[@]}"
 do
    ssh it@$i 'cat <<EOF >> /etc/hosts
-10.10.20.104 prod_k8s_master01
-10.10.20.105 prod_k8s_master02
-10.10.20.106 prod_k8s_master03
+10.10.20.104 prod-k8s-master01
+10.10.20.105 prod-k8s-master02
+10.10.20.106 prod-k8s-master03
 
-10.10.20.107 prod_k8s_ingress01
-10.10.20.108 prod_k8s_ingress02
-10.10.20.109 prod_k8s_ingress03
+10.10.20.107 prod-k8s-ingress01
+10.10.20.108 prod-k8s-ingress02
+10.10.20.109 prod-k8s-ingress03
 
-10.10.20.111 prod_k8s_worker01
-10.10.20.112 prod_k8s_worker02
-10.10.20.113 prod_k8s_worker03
-10.10.20.114 prod_k8s_worker04
-10.10.20.115 prod_k8s_worker05
-10.10.20.116 prod_k8s_worker06
-10.10.20.117 prod_k8s_worker07
-10.10.20.118 prod_k8s_worker08
-10.10.20.119 prod_k8s_worker09
-10.10.20.120 prod_k8s_worker10
-10.10.20.121 prod_k8s_worker11
-10.10.20.122 prod_k8s_worker12
+10.10.20.110 prod-k8s-worker-tool
+
+10.10.20.111 prod-k8s-worker01
+10.10.20.112 prod-k8s-worker02
+10.10.20.113 prod-k8s-worker03
+10.10.20.114 prod-k8s-worker04
+10.10.20.115 prod-k8s-worker05
+10.10.20.116 prod-k8s-worker06
+10.10.20.117 prod-k8s-worker07
+10.10.20.118 prod-k8s-worker08
+10.10.20.119 prod-k8s-worker09
+10.10.20.120 prod-k8s-worker10
+10.10.20.121 prod-k8s-worker11
+10.10.20.122 prod-k8s-worker12
 EOF'
 done
 ```

@@ -309,9 +309,11 @@ volume_cross_zone_attachment: false
 persistent_volumes_enabled: false
 ## Taint for Ingress Nodes
 ingress_nginx_nodes:
-  - prod_k8s_ingress01
-  - prod_k8s_ingress02
-  - prod_k8s_ingress03
+  - prod-k8s-ingress01
+  - prod-k8s-ingress02
+  - prod-k8s-ingress03
+monitor_nodes:
+  - prod-k8s-worker-tool
 ## Container Engine Acceleration
 ## Enable container acceleration feature, for example use gpu acceleration in containers
 # nvidia_accelerator_enabled: true

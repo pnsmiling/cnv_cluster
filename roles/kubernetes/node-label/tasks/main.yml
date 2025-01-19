@@ -23,6 +23,20 @@
     - nvidia_accelerator_enabled | bool
     - inventory_hostname in nvidia_gpu_nodes
 
+- name: Node label for Ingress nodes
+  set_fact:
+    role_node_labels: "{{ role_node_labels + ['node-role=ingress'] }}"
+  when:
+    - ingress_nginx_nodes is defined
+    - inventory_hostname in ingress_nginx_nodes
+
+- name: Node label for monitor nodes
+  set_fact:
+    role_node_labels: "{{ role_node_labels + ['node-role=monitor'] }}"
+  when:
+    - monitor_nodes is defined
+    - inventory_hostname in monitor_nodes
+
 - name: Set inventory node label to empty list
   set_fact:
     inventory_node_labels: []
